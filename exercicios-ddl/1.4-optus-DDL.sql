@@ -1,0 +1,45 @@
+--EXERCÍCIO 1.4 - OPTUS
+
+--DDL
+
+CREATE DATABASE Exercicio_1_4_optus
+
+USE Exercicio_1_4_optus
+
+CREATE TABLE Estilos
+(
+	IdEstilo INT PRIMARY KEY IDENTITY,
+	Nome VARCHAR(20) NOT NULL
+)
+
+CREATE TABLE Artistas
+(
+	IdArtista INT PRIMARY KEY IDENTITY,
+	Nome VARCHAR(25) NOT NULL
+)
+
+CREATE TABLE Usuarios
+(
+	IdUsuario INT PRIMARY KEY IDENTITY,
+	Nome VARCHAR(25) NOT NULL,
+	Email VARCHAR(30) NOT NULL,
+	Senha VARCHAR(15) NOT NULL,
+	Permissao BIT NOT NULL
+)
+
+CREATE TABLE Albuns
+(
+	IdAlbum INT PRIMARY KEY IDENTITY,
+	IdArtista INT FOREIGN KEY REFERENCES Artistas(IdArtista),
+	Titulo VARCHAR(30) NOT NULL,
+	DataLancamento VARCHAR(10) NOT NULL,
+	Localizacao VARCHAR(30) NOT NULL,
+	QtdMinutos VARCHAR(3) NOT NULL,
+	Ativo BIT NOT NULL
+)
+
+CREATE TABLE AlbunsEstilos
+(
+	IdAlbum INT FOREIGN KEY REFERENCES Albuns(IdAlbum),
+	IdEstilo INT FOREIGN KEY REFERENCES Estilos(IdEstilo)
+)
